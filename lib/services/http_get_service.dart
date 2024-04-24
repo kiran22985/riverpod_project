@@ -7,13 +7,13 @@ class HttpGetPost {
   Future<List<Post>> getPosts() async {
     List<Post> posts = [];
     try {
-      final response = await http
+      http.Response response = await http
           .get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
 
       if (response.statusCode == 200) {
         var postMaps = jsonDecode(response.body); // json to map conversion
         postMaps.forEach((element) {
-          Post postObject = Post.fromJson(postMaps); // map to object conversion
+          Post postObject = Post.fromJson(element); // map to object conversion
           posts.add(postObject);
         });
       }

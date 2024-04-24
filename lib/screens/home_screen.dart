@@ -14,15 +14,15 @@ class HomeScreen extends ConsumerWidget {
       body: Consumer(builder: (context, ref, child) {
         Poststate state = ref.watch(postProvider);
         if (state is PostInitialState) {
-          return const Text("Press FAB to fetch data");
+          return const Center(child: Text("Press FAB to fetch data"));
         }
 
         if (state is PostLoadingState) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (state is PostErrorstate) {
-          return Text(state.message);
+          return Center(child: Text(state.message));
         }
         if (state is PostLoadedState) {
           return ListView.builder(
